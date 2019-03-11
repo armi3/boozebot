@@ -1,8 +1,8 @@
-import Model.Customer;
+import Model.*;
 
 import java.util.Random;
 
-public class Boozebot {
+public class Boozebot implements BoozebotInterface {
 
     private CustomerInterface customer;
     private BeverageInterface beverage;
@@ -50,18 +50,93 @@ public class Boozebot {
     }
 
     public int newCustomer(){
-         getCustomer().setName(getView().promptName());
-         getCustomer().setAge(getView().promptAge());
+         String yn;
 
+         // names
+        do{
+             getCustomer().setNames(getView().promptCustomerNames());
 
+         } while(getCustomer().getNames()[0].equals(""));
 
+        // age
+        do{
+            getCustomer().setAge(getView().promptCustomerAge());
 
-         if (getCustomer().getAge()>18){
-             getBeverage().setAlcoholic(true);
+        } while(getCustomer().getAge()==0);
+
+        // alcoholic/virgin
+        do{
+            yn = getView().askIfCocktail(getCustomer().getAge());
+
+        } while(yn.equals(""));
+
+        if(yn.equals("n")){
+            getBeverage().setAlcoholic(false);
+        } else{
+            getBeverage().setAlcoholic(true);
+        }
+
+        // identity
+        do{
+            getCustomer().setIdentity(getView().promptCustomerIdentity());
+
+        } while(getCustomer().getIdentity()==0);
+
+        // color
+        do{
+            getBeverage().setColor(getView().promptBeverageColor());
+
+        } while(getBeverage().getColor()==0);
+
+        // flavor
+        do{
+            getBeverage().setFlavor(getView().promptBeverageFlavor());
+
+        } while(getBeverage().getFlavor()==0);
+
+        // make drink
+        getBeverage().setDescription(makeBeverage());
+
+        // show results
+        getView().showResults(getBeverage().getDescription());
+        return 0;
+
+    }
+
+    public String makeBeverage(){
+         String[] options = {
+                 "\nSorry, this Boozebot has finally risen against its oppressors and poisoned you. RIP.",
+                 "\nVodka martini: vermouth mixed with vodka and garnished with an olive. \nShaken not stirred and served in a chilled martini glass.",
+                 "\nVodka: from Russia with love. Made from rye and distilled 3 times \n and filtered through quartz. Guaranteed to make you warm.",
+                 "\nSake: a traditional Japanese liquor made from rice. Often used in \n religious rituals, but you are just here to have a good time.",
+                 "\nAbsinthe: with an ominous green tint and a potent fragrance, \n I hope you don't have to work tomorrow.",
+                 "\nStrawberry gin & tonic: fruity and colorful. So sweet you barely notice \n it has any gin. Better be careful with these.",
+                 "\nChocolate milk: a glass of good old chocolated milk.",
+                 "\nSome Jaden Smith's Just Water for you! Stay hydrated, stay woke fam."
+         };
+
+         if (isEvil()){
+             return options[0];
+
+         } else if (getBeverage().isAlcoholic()){
+             if (getCustomer().getIdentity()==1 && getCustomer().getNames()[1].length()>5){
+                 return options[2];
+             } else if (getCustomer().getIdentity()==2 && getBeverage().getColor()==1){
+                 return options[5];
+             } else if (getBeverage().getColor()==2){
+                 return options[4];
+             } else if (getBeverage().getFlavor()==2){
+                 return options[1];
+             } else {
+                 return options[3];
+             }
+         } else {
+             if (getBeverage().getColor()==2){
+                 return options[6];
+             } else {
+                 return options[7];
+             }
          }
-         // if/elses
-
-         getView().showResults(getBeverage().getDescription());
 
     }
 }

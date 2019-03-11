@@ -7,6 +7,13 @@
     <groupId>codes.fer.projects</groupId>
     <artifactId>boozebot</artifactId>
     <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

@@ -15,7 +15,7 @@ public class Factory {
     }
 
     public BoozebotInterface createBot(CustomerInterface customer, BeverageInterface beverage, ViewInterface view){
-        return new Boozebot();
+        return new Boozebot(customer, beverage, view);
     }
 
 
