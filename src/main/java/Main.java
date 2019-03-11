@@ -1,22 +1,23 @@
+import Model.CustomerInterface;
+
 public class Main {
     public static void main(String[] args) {
         Factory factory = new Factory();
-        BoozebotInterface bot = factory.createBot(
-                factory.createCustomer(),
-                factory.createBeverage(),
-                factory.createView());
+        BoozebotInterface bot = factory.createBot();
+        ViewInterface view = factory.createView();
+        CustomerInterface customer = factory.createCustomer();
 
         int menuChoice = 0;
         do{
             switch(menuChoice) {
                 case 0:
-                    menuChoice = bot.getView().promptActionWithMenu();
+                    menuChoice = view.promptActionWithMenu();
                     break;
                 case 1:
-                    menuChoice = bot.newCustomer();
+                    menuChoice = bot.newCustomer(view, customer, false);
                     break;
                 case 3:
-                    menuChoice = bot.getView().promptAction();
+                    menuChoice = view.promptAction();
                     break;
             }
 

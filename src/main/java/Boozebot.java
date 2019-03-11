@@ -1,44 +1,15 @@
-import Model.*;
+import Model.CustomerInterface;
 
 import java.util.Random;
 
 public class Boozebot implements BoozebotInterface {
 
-    private CustomerInterface customer;
-    private BeverageInterface beverage;
-    private ViewInterface view;
     private boolean evil;
 
-     Boozebot(CustomerInterface customer, BeverageInterface beverage, ViewInterface view){
-        this.customer = customer;
-        this.beverage = beverage;
-        this.view = view;
+     Boozebot(){
+        super();
         Random random = new Random();
         evil = random.nextBoolean();
-    }
-
-    public CustomerInterface getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerInterface customer) {
-        this.customer = customer;
-    }
-
-    public BeverageInterface getBeverage() {
-        return beverage;
-    }
-
-    public void setBeverage(BeverageInterface beverage) {
-        this.beverage = beverage;
-    }
-
-    public ViewInterface getView() {
-        return view;
-    }
-
-    public void setView(ViewInterface view) {
-        this.view = view;
     }
 
     public boolean isEvil() {
@@ -49,61 +20,61 @@ public class Boozebot implements BoozebotInterface {
         this.evil = evil;
     }
 
-    public int newCustomer(){
+    // AQUI ES DONDE VA EL ARREGLO DONDE GANÉ MI APUESTA
+    public int newCustomer(ViewInterface view, CustomerInterface customer, boolean testing){
          String yn;
 
-         // names
-        do{
-             getCustomer().setNames(getView().promptCustomerNames());
+         if(testing){
+             view.showResults(makeBeverage(customer.calcBeverageRecipe(testingProfile)));
 
-         } while(getCustomer().getNames()[0].equals(""));
+         } else{
+             // names
+             do{
+                 customer.setNames(view.promptCustomerNames());
 
-        // age
-        do{
-            getCustomer().setAge(getView().promptCustomerAge());
+             } while(customer.getNames()[0].equals(""));
 
-        } while(getCustomer().getAge()==0);
+             // age
+             do{
+                 customer.setAge(view.promptCustomerAge());
 
-        // alcoholic/virgin
-        do{
-            yn = getView().askIfCocktail(getCustomer().getAge());
+             } while(customer.getAge()==0);
 
-        } while(yn.equals(""));
+             // alcoholic/virgin
+             do{
+                 yn = view.askIfCocktail(customer.getAge());
 
-        if(yn.equals("n")){
-            getBeverage().setAlcoholic(false);
-        } else{
-            getBeverage().setAlcoholic(true);
-        }
+             } while(yn.equals(""));
 
-        // identity
-        do{
-            getCustomer().setIdentity(getView().promptCustomerIdentity());
+             if(yn.equals("n")){
+                 customer.setPreferredAlcoholicContent(0);
+             } else {
+                 customer.setPreferredAlcoholicContent(1);
+             }
 
-        } while(getCustomer().getIdentity()==0);
+             // identity
+             do{
+                 customer.setPreferredIdentity(view.promptCustomerIdentity());
 
-        // color
-        do{
-            getBeverage().setColor(getView().promptBeverageColor());
+             } while(customer.getPreferredIdentity()==0);
 
-        } while(getBeverage().getColor()==0);
+             // sweetness
+             do{
+                 customer.setPreferredSweetness(view.promptCustomerSweetness());
 
-        // flavor
-        do{
-            getBeverage().setFlavor(getView().promptBeverageFlavor());
+             } while(customer.getPreferredSweetness()==0);
 
-        } while(getBeverage().getFlavor()==0);
 
-        // make drink
-        getBeverage().setDescription(makeBeverage());
+             // show results
+             view.showResults(makeBeverage(customer.calcBeverageRecipe(customer.calcProfile())));
 
-        // show results
-        getView().showResults(getBeverage().getDescription());
+         }
+
         return 0;
 
     }
 
-    public String makeBeverage(){
+    public String makeBeverage(int recipe){
          String[] options = {
                  "\nSorry, this Boozebot has finally risen against its oppressors and poisoned you. RIP.",
                  "\nVodka martini: vermouth mixed with vodka and garnished with an olive. \nShaken not stirred and served in a chilled martini glass.",
@@ -118,24 +89,8 @@ public class Boozebot implements BoozebotInterface {
          if (isEvil()){
              return options[0];
 
-         } else if (getBeverage().isAlcoholic()){
-             if (getCustomer().getIdentity()==1 && getCustomer().getNames()[1].length()>5){
-                 return options[2];
-             } else if (getCustomer().getIdentity()==2 && getBeverage().getColor()==1){
-                 return options[5];
-             } else if (getBeverage().getColor()==2){
-                 return options[4];
-             } else if (getBeverage().getFlavor()==2){
-                 return options[1];
-             } else {
-                 return options[3];
-             }
          } else {
-             if (getBeverage().getColor()==2){
-                 return options[6];
-             } else {
-                 return options[7];
-             }
+             return options[recipe];
          }
 
     }

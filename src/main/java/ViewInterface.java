@@ -13,9 +13,9 @@ public interface ViewInterface {
 
     int promptCustomerIdentity();
 
-    int promptBeverageColor();
+    int promptCustomerSweetness();
 
-    int promptBeverageFlavor();
+    //int promptBeverageFlavor();
 
     void showResults(String description);
 }

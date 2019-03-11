@@ -1,24 +1,12 @@
-import Model.BeverageInterface;
 import Model.CustomerInterface;
 
 public interface BoozebotInterface {
-    CustomerInterface getCustomer();
-
-    void setCustomer(CustomerInterface customer);
-
-    BeverageInterface getBeverage();
-
-    void setBeverage(BeverageInterface beverage);
-
-    ViewInterface getView();
-
-    void setView(ViewInterface view);
-
     boolean isEvil();
 
     void setEvil(boolean evil);
 
-    int newCustomer();
+    // AQUI ES DONDE VA EL ARREGLO DONDE GANÉ MI APUESTA
+    int newCustomer(ViewInterface view, CustomerInterface customer, boolean testing);
 
-    String makeBeverage();
+    String makeBeverage(int recipe);
 }

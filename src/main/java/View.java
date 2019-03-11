@@ -102,7 +102,7 @@ public class View implements ViewInterface {
         Scanner sc = new Scanner(System.in);
         int id = 0;
         System.out.print("\nWhich of these do you relate the most? (1-3)");
-        System.out.print("\n1) Olives");
+        System.out.print("\n1) Winnie Pooh");
         System.out.print("\n2) Bubble from Power Puff Girls");
         System.out.print("\n3) Naruto");
         try {
@@ -114,13 +114,13 @@ public class View implements ViewInterface {
         return id;
     }
 
-    public int promptBeverageColor(){
+    public int promptCustomerSweetness(){
         Scanner sc = new Scanner(System.in);
         int color = 0;
         System.out.print("\nWhich do you prefer? (1-3)");
         System.out.print("\n1) Pink");
-        System.out.print("\n2) Black");
-        System.out.print("\n3) Colorless");
+        System.out.print("\n2) The blood of your enemies");
+        System.out.print("\n3) Blue, the warmest color");
         try {
             color = Integer.parseInt(sc.next(Pattern.compile("^([1-3])$")));
         }
@@ -131,7 +131,7 @@ public class View implements ViewInterface {
 
     }
 
-    public int promptBeverageFlavor(){
+/*    public int promptBeverageFlavor(){
         Scanner sc = new Scanner(System.in);
         int flavor = 0;
         System.out.print("\nWhat would you prefer rn? (1-3)");
@@ -146,12 +146,12 @@ public class View implements ViewInterface {
         }
         return flavor;
 
-    }
+    }*/
 
-    public void showResults(String description){
+    public void showResults(String beverage){
         System.out.print("\nProcessing with all the ML power of the world...");
         System.out.print("\nTonight, your perfect drink is... \n");
-        System.out.print(description);
+        System.out.print(beverage);
     }
 
 

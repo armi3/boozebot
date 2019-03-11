@@ -9,7 +9,19 @@ public interface CustomerInterface {
 
     void setAge(int age);
 
-    int getIdentity();
+    int getPreferredIdentity();
 
-    void setIdentity(int identity);
+    void setPreferredIdentity(int preferredIdentity);
+
+    int getPreferredSweetness();
+
+    void setPreferredSweetness(int preferredSweetness);
+
+    int getPreferredAlcoholicContent();
+
+    void setPreferredAlcoholicContent(int preferredAlcoholicContent);
+
+    int calcBeverageRecipe(int[] profile);
+
+    int[] calcProfile();
 }
