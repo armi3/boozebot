@@ -1,143 +1,37 @@
+import Model.CustomerInterface;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class BoozebotTest {
 
     @DataProvider(name = "customerGenerator")
-    public static Object[][] customerGenerator(){
-        String[] moreThan5={"fernanda","gonzalez"};
-        String[] lessThan5={"juan","elgueta"};
-        return new Object[][]{
-                {moreThan5,17,1,1,1},
-                {moreThan5,17,1,1,2},
-                {moreThan5,17,1,1,3},
-                {moreThan5,17,1,2,1},
-                {moreThan5,17,1,2,2},
-                {moreThan5,17,1,2,3},
-                {moreThan5,17,1,3,1},
-                {moreThan5,17,1,3,2},
-                {moreThan5,17,1,3,3},
-
-                {moreThan5,17,2,1,1},
-                {moreThan5,17,2,1,2},
-                {moreThan5,17,2,1,3},
-                {moreThan5,17,2,2,1},
-                {moreThan5,17,2,2,2},
-                {moreThan5,17,2,2,3},
-                {moreThan5,17,2,3,1},
-                {moreThan5,17,2,3,2},
-                {moreThan5,17,2,3,3},
-
-                {moreThan5,17,3,1,1},
-                {moreThan5,17,3,1,2},
-                {moreThan5,17,3,1,3},
-                {moreThan5,17,3,2,1},
-                {moreThan5,17,3,2,2},
-                {moreThan5,17,3,2,3},
-                {moreThan5,17,3,3,1},
-                {moreThan5,17,3,3,2},
-                {moreThan5,17,3,3,3},
-
-                {moreThan5,19,1,1,1},
-                {moreThan5,19,1,1,2},
-                {moreThan5,19,1,1,3},
-                {moreThan5,19,1,2,1},
-                {moreThan5,19,1,2,2},
-                {moreThan5,19,1,2,3},
-                {moreThan5,19,1,3,1},
-                {moreThan5,19,1,3,2},
-                {moreThan5,19,1,3,3},
-
-                {moreThan5,19,2,1,2},
-                {moreThan5,19,2,1,3},
-                {moreThan5,19,2,2,1},
-                {moreThan5,19,2,2,2},
-                {moreThan5,19,2,2,3},
-                {moreThan5,19,2,3,1},
-                {moreThan5,19,2,3,2},
-                {moreThan5,19,2,3,3},
-
-                {moreThan5,19,3,1,1},
-                {moreThan5,19,3,1,2},
-                {moreThan5,19,3,1,3},
-                {moreThan5,19,3,2,1},
-                {moreThan5,19,3,2,2},
-                {moreThan5,19,3,2,3},
-                {moreThan5,19,3,3,1},
-                {moreThan5,19,3,3,2},
-                {moreThan5,19,3,3,3},
-
-                {lessThan5,17,1,1,1},
-                {lessThan5,17,1,1,2},
-                {lessThan5,17,1,1,3},
-                {lessThan5,17,1,2,1},
-                {lessThan5,17,1,2,2},
-                {lessThan5,17,1,2,3},
-                {lessThan5,17,1,3,1},
-                {lessThan5,17,1,3,2},
-                {lessThan5,17,1,3,3},
-
-                {lessThan5,17,2,1,1},
-                {lessThan5,17,2,1,2},
-                {lessThan5,17,2,1,3},
-                {lessThan5,17,2,2,1},
-                {lessThan5,17,2,2,2},
-                {lessThan5,17,2,2,3},
-                {lessThan5,17,2,3,1},
-                {lessThan5,17,2,3,2},
-                {lessThan5,17,2,3,3},
-
-                {lessThan5,17,3,1,1},
-                {lessThan5,17,3,1,2},
-                {lessThan5,17,3,1,3},
-                {lessThan5,17,3,2,1},
-                {lessThan5,17,3,2,2},
-                {lessThan5,17,3,2,3},
-                {lessThan5,17,3,3,1},
-                {lessThan5,17,3,3,2},
-                {lessThan5,17,3,3,3},
-
-                {lessThan5,19,1,1,1},
-                {lessThan5,19,1,1,2},
-                {lessThan5,19,1,1,3},
-                {lessThan5,19,1,2,1},
-                {lessThan5,19,1,2,2},
-                {lessThan5,19,1,2,3},
-                {lessThan5,19,1,3,1},
-                {lessThan5,19,1,3,2},
-                {lessThan5,19,1,3,3},
-
-                {lessThan5,19,2,1,1},
-                {lessThan5,19,2,1,2},
-                {lessThan5,19,2,1,3},
-                {lessThan5,19,2,2,1},
-                {lessThan5,19,2,2,2},
-                {lessThan5,19,2,2,3},
-                {lessThan5,19,2,3,1},
-                {lessThan5,19,2,3,2},
-                {lessThan5,19,2,3,3},
-
-                {lessThan5,19,3,1,1},
-                {lessThan5,19,3,1,2},
-                {lessThan5,19,3,1,3},
-                {lessThan5,19,3,2,1},
-                {lessThan5,19,3,2,2},
-                {lessThan5,19,3,2,3},
-                {lessThan5,19,3,3,1},
-                {lessThan5,19,3,3,2},
-                {lessThan5,19,3,3,3},
-        };
+    public Iterator<Object[]>customers(){
+        List<Object[]>data=new ArrayList<Object[]>();
+        for (int i=4;i<=5;i++){
+            for (int ii=17;ii<=18;i++){
+                for (int x=1; x<=3;x++){
+                    for(int y=1;y<=3;y++){
+                        for (int z=1;z<=3;z++){
+                            data.add(new Integer[]{i,ii,x,y,z});
+                        }
+                    }
+                }
+            }
+        }
+        return data.iterator();
     }
-
-/*    @Test(dataProvider="CustomerGenerator")
-    public void testNewCustomer(String[] names, int age, int preferredIdentity, int preferredSweetness, int preferredAlcoholicContent) {
+   @Test(dataProvider="CustomerGenerator")
+    public void testNewCustomer(int[]profile) {
         Factory factory = new Factory();
-        CustomerInterface customer = factory.createCustomer(names,age,preferredIdentity,preferredSweetness,preferredAlcoholicContent);
-        ViewInterface view=factory.createView();
+        CustomerInterface customer = factory.createCustomer();
         BoozebotInterface bot = factory.createBot();
-        bot.newCustomer(view, customer, true);
+        bot.newCustomer(customer,profile);
 
-    }*/
+    }
 
     @Test
     public void testMakeBeverage() {
