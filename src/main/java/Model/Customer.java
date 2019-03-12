@@ -16,13 +16,6 @@ public class Customer implements CustomerInterface {
         preferredAlcoholicContent = 0;
     }
 
-    public Customer(String[] names, int age, int preferredIdentity, int preferredSweetness, int preferredAlcoholicContent) {
-        this.names = names;
-        this.age = age;
-        this.preferredIdentity = preferredIdentity;
-        this.preferredSweetness = preferredSweetness;
-        this.preferredAlcoholicContent = preferredAlcoholicContent;
-    }
 
     public String[] getNames() {
         return names;
@@ -62,37 +55,6 @@ public class Customer implements CustomerInterface {
 
     public void setPreferredAlcoholicContent(int preferredAlcoholicContent) {
         this.preferredAlcoholicContent = preferredAlcoholicContent;
-    }
-
-    public int calcBeverageRecipe(int[] profile){
-
-        int firstNameLenghtCase = profile[0];
-        int preferredIdentityCase = profile[1];
-        int preferredSweetnessCase = profile[2];
-        int preferredAlcoholicContentCase = profile[3];
-
-        if(preferredAlcoholicContentCase==0 && preferredIdentityCase!=3){
-            return 6; //chocolate milk
-        }
-        else if (preferredAlcoholicContentCase==1 && firstNameLenghtCase<=5){
-            return 2; //vodka
-        }
-        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==1){
-            return 5; // strawberry
-        }
-        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==2){
-            return 4; // absinthe
-        }
-        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==3){
-            return 1; // vodka martini
-        }
-        else if (preferredAlcoholicContentCase==1 && preferredIdentityCase==3){
-            return 3; // sake
-        }
-        else {
-            return 7;
-        }
-
     }
 
     public int[] calcProfile(){

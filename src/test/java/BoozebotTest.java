@@ -1,12 +1,10 @@
-import Model.Customer;
-import Model.CustomerInterface;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class BoozebotTest {
 
-    @DataProvider(name = "CustomerGenerator")
-    public static Object[][]CustomerG(){
+    @DataProvider(name = "customerGenerator")
+    public static Object[][] customerGenerator(){
         String[] moreThan5={"fernanda","gonzalez"};
         String[] lessThan5={"juan","elgueta"};
         return new Object[][]{
@@ -131,7 +129,7 @@ public class BoozebotTest {
         };
     }
 
-    @Test(dataProvider="CustomerGenerator")
+/*    @Test(dataProvider="CustomerGenerator")
     public void testNewCustomer(String[] names, int age, int preferredIdentity, int preferredSweetness, int preferredAlcoholicContent) {
         Factory factory = new Factory();
         CustomerInterface customer = factory.createCustomer(names,age,preferredIdentity,preferredSweetness,preferredAlcoholicContent);
@@ -139,7 +137,7 @@ public class BoozebotTest {
         BoozebotInterface bot = factory.createBot();
         bot.newCustomer(view, customer, true);
 
-    }
+    }*/
 
     @Test
     public void testMakeBeverage() {

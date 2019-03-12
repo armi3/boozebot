@@ -3,21 +3,20 @@ import Model.CustomerInterface;
 public class Main {
     public static void main(String[] args) {
         Factory factory = new Factory();
-        ViewInterface view = factory.createView();
-        CustomerInterface customer = factory.createCustomer();
-        BoozebotInterface bot = factory.createBot();
 
         int menuChoice = 0;
         do{
             switch(menuChoice) {
                 case 0:
-                    menuChoice = view.promptActionWithMenu();
+                    menuChoice = ViewInterface.promptActionWithMenu();
                     break;
                 case 1:
-                    menuChoice = bot.newCustomer(view, customer, false);
+                    CustomerInterface customer = factory.createCustomer();
+                    BoozebotInterface bot = factory.createBot();
+                    menuChoice = bot.newCustomer(customer, null);
                     break;
                 case 3:
-                    menuChoice = view.promptAction();
+                    menuChoice = ViewInterface.promptAction();
                     break;
             }
 
