@@ -16,6 +16,14 @@ public class Customer implements CustomerInterface {
         preferredAlcoholicContent = 0;
     }
 
+    public Customer(String[] names, int age, int preferredIdentity, int preferredSweetness, int preferredAlcoholicContent){
+        super();
+        this.names = names;
+        this.age = age;
+        this.preferredIdentity = preferredIdentity;
+        this.preferredSweetness = preferredSweetness;
+        this.preferredAlcoholicContent = preferredAlcoholicContent;
+    }
 
     public String[] getNames() {
         return names;
