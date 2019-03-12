@@ -49,10 +49,10 @@ public class Boozebot implements BoozebotInterface {
                 customer.setPreferredSweetness(ViewInterface.promptCustomerSweetness());
             } while(customer.getPreferredSweetness()==0);
 
-            // calculate customer's profile
-            profile = customer.calcProfile();
-        }
 
+        }
+        // calculate customer's profile
+        profile = customer.calcProfile();
         beverage = makeBeverage(CustomerInterface.calcBeverageRecipe(profile));
         ViewInterface.showResults(beverage);
         return 0;
