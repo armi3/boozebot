@@ -25,7 +25,7 @@ public class Boozebot implements BoozebotInterface {
          String yn;
 
          if(testing){
-             view.showResults(makeBeverage(customer.calcBeverageRecipe(testingProfile)));
+             view.showResults(makeBeverage(customer.calcBeverageRecipe(customer.calcProfile())));
 
          } else{
              // names

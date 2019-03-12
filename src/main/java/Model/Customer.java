@@ -65,6 +65,7 @@ public class Customer implements CustomerInterface {
     }
 
     public int calcBeverageRecipe(int[] profile){
+
         int firstNameLenghtCase = profile[0];
         int preferredIdentityCase = profile[1];
         int preferredSweetnessCase = profile[2];

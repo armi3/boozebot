@@ -3,9 +3,9 @@ import Model.CustomerInterface;
 public class Main {
     public static void main(String[] args) {
         Factory factory = new Factory();
-        BoozebotInterface bot = factory.createBot();
         ViewInterface view = factory.createView();
         CustomerInterface customer = factory.createCustomer();
+        BoozebotInterface bot = factory.createBot();
 
         int menuChoice = 0;
         do{
