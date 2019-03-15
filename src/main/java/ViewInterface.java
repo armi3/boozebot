@@ -127,11 +127,18 @@ public interface ViewInterface {
     }
 
     static int[] profile(){
+        int age = promptCustomerAge();
+        int identity=promptCustomerIdentity();
+        int sweetness=promptCustomerSweetness();
+        int alcoholicContent;
+        if (age>=18){
+           alcoholicContent= promptAlcoholicContent();
+        }else alcoholicContent=0;
         return new int[]{
-                promptCustomerAge(),
-                promptCustomerIdentity(),
-                promptCustomerSweetness(),
-                promptAlcoholicContent()
+                age,
+                identity,
+                sweetness,
+                alcoholicContent
         };
     }
 

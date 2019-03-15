@@ -46,7 +46,7 @@ public class Boozebot implements BoozebotInterface {
         else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==1){
             return 5; // strawberry
         }
-        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==2){
+        else if (preferredAlcoholicContentCase==2 && preferredSweetnessCase==2){
             return 4; // absinthe
         }
         else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==3){
