@@ -23,40 +23,41 @@ public class Boozebot implements BoozebotInterface {
 
     // AQUI ES DONDE VA EL ARREGLO DONDE GANÉ MI APUESTA
     @Override
-    public int newCustomer(CustomerInterface customer, int[] profile){
+    public int newCustomer(CustomerInterface customer){
         String beverage;
-
-        if(profile == null){
-            do{ // names
-                customer.setNames(ViewInterface.promptCustomerNames());
-            } while(customer.getNames()[0].equals(""));
-
-            do{ // age
-                customer.setAge(ViewInterface.promptCustomerAge());
-            } while(customer.getAge()==0);
-
-            if(customer.getAge()>=18){
-                do{ // may choose alcoholic content
-                    customer.setPreferredAlcoholicContent(ViewInterface.promptAlcoholicContent());
-                } while(customer.getPreferredAlcoholicContent()==0);
-            }
-
-            do{ // identity
-                customer.setPreferredIdentity(ViewInterface.promptCustomerIdentity());
-            } while(customer.getPreferredIdentity()==0);
-
-            do{ // sweetness
-                customer.setPreferredSweetness(ViewInterface.promptCustomerSweetness());
-            } while(customer.getPreferredSweetness()==0);
-
-
-        }
-        // calculate customer's profile
-        profile = customer.calcProfile();
-        beverage = makeBeverage(CustomerInterface.calcBeverageRecipe(profile));
+        beverage = makeBeverage(calcBeverageRecipe(customer.getNames(),customer.getProfile()));
         ViewInterface.showResults(beverage);
         return 0;
+    }
 
+    @Override
+    public int calcBeverageRecipe(String[] names, int[] profile) {
+        int firstNameLenghtCase = names[0].length();
+        int preferredIdentityCase = profile[1];
+        int preferredSweetnessCase = profile[2];
+        int preferredAlcoholicContentCase = profile[3];
+
+        if(preferredAlcoholicContentCase==0 && preferredIdentityCase!=3){
+            return 6; //chocolate milk
+        }
+        else if (preferredAlcoholicContentCase==1 && firstNameLenghtCase<=5){
+            return 2; //vodka
+        }
+        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==1){
+            return 5; // strawberry
+        }
+        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==2){
+            return 4; // absinthe
+        }
+        else if (preferredAlcoholicContentCase==1 && preferredSweetnessCase==3){
+            return 1; // vodka martini
+        }
+        else if (preferredAlcoholicContentCase==1 && preferredIdentityCase==3){
+            return 3; // sake
+        }
+        else {
+            return 7; // water
+        }
     }
 
     @Override

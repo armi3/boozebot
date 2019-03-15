@@ -2,27 +2,36 @@ package Model;
 
 public class Customer implements CustomerInterface {
     private String[] names;
+    private int [] profile;
+
+    /*
     private int age;
     private int preferredIdentity;
     private int preferredSweetness;
     private int preferredAlcoholicContent;
-
+*/
     public Customer(){
         super();
-        names = null;
+        names = new String[]{"",""};
+        profile=new int[4];
+  /*
         age = 0;
         preferredIdentity = 0;
         preferredSweetness = 0;
         preferredAlcoholicContent = 0;
+        */
     }
 
     public Customer(String[] names, int age, int preferredIdentity, int preferredSweetness, int preferredAlcoholicContent){
         super();
         this.names = names;
+        this.profile=new int[]{age,preferredIdentity,preferredSweetness,preferredAlcoholicContent};
+        /*
         this.age = age;
         this.preferredIdentity = preferredIdentity;
         this.preferredSweetness = preferredSweetness;
         this.preferredAlcoholicContent = preferredAlcoholicContent;
+        */
     }
 
     public String[] getNames() {
@@ -33,6 +42,16 @@ public class Customer implements CustomerInterface {
         this.names = names;
     }
 
+    public int[] getProfile(){
+        return profile;
+    }
+
+    public void setProfile(int[] profile){
+
+        this.profile=profile;
+    }
+
+/*
     public int getAge() {
         return age;
     }
@@ -74,4 +93,5 @@ public class Customer implements CustomerInterface {
 
         return profile;
     }
+    */
 }

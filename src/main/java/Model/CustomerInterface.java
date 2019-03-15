@@ -5,6 +5,10 @@ public interface CustomerInterface {
 
     void setNames(String[] names);
 
+    int[] getProfile();
+
+    void setProfile(int[]profile);
+/*
     int getAge();
 
     void setAge(int age);
@@ -49,8 +53,8 @@ public interface CustomerInterface {
         else {
             return 7; // water
         }
-
     }
 
     int[] calcProfile();
+    */
 }

@@ -13,7 +13,9 @@ public class Main {
                 case 1:
                     CustomerInterface customer = factory.createCustomer();
                     BoozebotInterface bot = factory.createBot();
-                    menuChoice = bot.newCustomer(customer, null);
+                    customer.setNames(ViewInterface.promptCustomerNames());
+                    customer.setProfile(ViewInterface.profile());
+                    menuChoice = bot.newCustomer(customer);
                     break;
                 case 3:
                     menuChoice = ViewInterface.promptAction();

@@ -126,6 +126,15 @@ public interface ViewInterface {
 
     }
 
+    static int[] profile(){
+        return new int[]{
+                promptCustomerAge(),
+                promptCustomerIdentity(),
+                promptCustomerSweetness(),
+                promptAlcoholicContent()
+        };
+    }
+
     static void showResults(String beverage){
         System.out.print("\nProcessing with all the ML power of the world...");
         System.out.print("\nTonight, your perfect drink is... \n");
